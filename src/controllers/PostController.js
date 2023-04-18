@@ -44,20 +44,7 @@ class PostController {
         } catch (error) {
             return response.status(400).json({ error: error.message });
         }
-    } 
-
-    async index(request, response) {
-        try {
-            const posts = await knex("post").select("*");
-            if (!posts) {
-                throw new AppError("Não há posts cadastrados");
-            }
-            return response.json(posts);
-        } catch (error) {
-            return response.status(400).json({ error: error.message });
-        }
-    }
-    
+    }     
 }
 
 module.exports = PostController;
