@@ -40,7 +40,7 @@ class PostController {
             await knex("post").insert({ author, title, description, type, value: propriedade.value, contact, propiedade: propriedade.id });
             
             return response.status(200).json({ author, title, description, type, propriedade_value, contact, propriedade_id });
-            // O retorno do json ainda vou tirar, só pra testar -> Remover depois
+            // O retorno do json é para ser removido, só pra testar -> Remover depois
         } catch (error) {
             return response.status(400).json({ error: error.message });
         }
