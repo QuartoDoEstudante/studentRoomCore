@@ -10,27 +10,24 @@ class UserController {
     if (![first_name, last_name, email, password, contact, cpf].every(Boolean)) {
       throw new AppError("Preencha todos os campos");
     }
-
+    
     const emailExistent = await knex("users").where({ email }).first();
-
     if (emailExistent) {
       throw new AppError("Email já cadastrado");
     }
-
+    
     const cpfExistent = await knex("users").where({ cpf }).first();
-
     if (cpfExistent) {
       throw new AppError("CPF já cadastrado");
     }
-
+    
     const hashedPassword = await hash(password, 8);
-
 
     await knex("users").insert({
       first_name,
       last_name,
       email,
-      hashedPassword,
+      password: hashedPassword,
       contact,
       cpf,
     });
