@@ -44,7 +44,30 @@ class PostController {
         } catch (error) {
             return response.status(400).json({ error: error.message });
         }
-    }     
+    }
+
+    //delete post
+    async delete(request, response) {
+        try{
+            const { id , user} = request.body;
+
+            const post = await knex("post").select("*").where("id", id).first();
+
+            if (!post) {
+                throw new AppError("Post não encontrado");
+            }
+
+            if(post.author != user) {
+                throw new AppError("Você não tem permissão para deletar esse post");
+            }
+
+            await knex("post").where("id", id).del();
+
+            return response.status(200).json({ post, message: "Post deletado com sucesso" }); // retorna o post deletado -> Remover depois
+        } catch (error) {
+            return response.status(400).json({ error: error.message });
+        }
+    }
 }
 
 module.exports = PostController;

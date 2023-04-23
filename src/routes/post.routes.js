@@ -8,4 +8,6 @@ const postController = new PostController();
 
 postRoutes.post('/create', postController.create);
 
+postRoutes.post('/delete/', postController.delete);
+
 module.exports = postRoutes;
