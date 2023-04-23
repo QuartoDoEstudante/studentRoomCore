@@ -26,7 +26,7 @@ class UserController {
         if (!posts) {
             throw new AppError("Não há posts cadastrados");
         }
-        return response.json(posts);
+        return response.json(posts); // Está retornando o post, -> remover depois?
     } catch (error) {
         return response.status(400).json({ error: error.message });
     }
