@@ -28,3 +28,5 @@ function ensureAuthenticated(request, response, next){
   }
 
 }
+
+module.exports = ensureAuthenticated;
