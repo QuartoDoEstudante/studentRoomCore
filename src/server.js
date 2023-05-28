@@ -1,9 +1,17 @@
+require("express-async-errors");
 const express = require("express");
 const routes = require("./routes")
 const AppError = require("./utils/AppError")
+const uploadConfig = require("./configs/upload")
+
+
 
 const app = express();
 app.use(express.json());
+
+
+
+app.use("/files", express.static(uploadConfig.UPLOAD_FOLDER))
 app.use(routes);
 
 app.use((error, request, response, next) => {
@@ -15,10 +23,11 @@ app.use((error, request, response, next) => {
   }
 
   return response.status(500).json({
-    status: "error",
-    message: "internal server error"
+    status: "Error",
+    message: (error.message)
   })
-})
+
+});
 
 
 const PORT = 3333;
