@@ -77,7 +77,7 @@ class UserController {
     return response.status(200).json();
 
   }
-  
+
 }
 
 module.exports = UserController;
