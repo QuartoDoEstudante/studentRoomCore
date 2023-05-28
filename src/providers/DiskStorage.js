@@ -1,24 +1,24 @@
 const fs = require("fs");
 const path = require("path");
-const uploadConfig = require("../config/upload");
+const uploadConfig = require("../configs/upload");
 
-class diskStorage {
+class DiskStorage {
    
-  async SaveFile(file) {
+  async saveFile(file) {
 
     //mover o arquivo da pasta tmp para a pasta uploads
     await fs.promises.rename(
-      path.resolve(uploadConfig.tmpFolder, file),
-      path.resolve(uploadConfig.uploadFolder, file)
+      path.resolve(uploadConfig.TMP_FOLDER, file),
+      path.resolve(uploadConfig.UPLOAD_FOLDER, file)
     );
 
     return file;
   }
 
 
-  async DeleteFile(file) {
+  async deleteFile(file) {
 
-    const filePath = path.resolve(uploadConfig.uploadFolder, file);
+    const filePath = path.resolve(uploadConfig.UPLOAD_FOLDER, file);
 
     try{
       //verificar se o arquivo existe
