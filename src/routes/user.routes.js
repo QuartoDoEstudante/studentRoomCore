@@ -19,7 +19,6 @@ userRoutes.put("/update", ensureAuthenticated, userController.update);
 //carregando imagem do usuario em um arquivo temporario 
 userRoutes.patch("/avatar", ensureAuthenticated, upload.single("avatar"), userAvatarController.update);
 
-userRoutes.get('/posts', userController.posts);
 
 module.exports = userRoutes;
 
