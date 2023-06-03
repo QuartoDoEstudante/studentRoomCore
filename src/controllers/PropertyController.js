@@ -22,7 +22,7 @@ class PropertyController {
       }
 
       await knex("property").insert({
-        user_id,
+        owner: user_id,
         title,
         description,
         type,
