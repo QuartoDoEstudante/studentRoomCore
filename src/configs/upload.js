@@ -19,6 +19,7 @@ const MULTER = {
     },
     
   }),
+  limits: { files: 5 }
 }
 
 module.exports ={

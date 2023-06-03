@@ -12,7 +12,7 @@ const upload = multer(uploadConfig.MULTER);
 const propertyController = new PropertyController();
 
 
-propertyRoutes.post("/create", ensureAuthenticated, propertyController.create);
+propertyRoutes.post("/create", ensureAuthenticated, upload.array('files'), propertyController.create);
 
 
 module.exports = propertyRoutes;
