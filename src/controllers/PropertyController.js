@@ -101,6 +101,42 @@ class PropertyController {
       
   }
 
+  async show(request, response) {
+    const { id } = request.params;
+
+    const property = await knex("property").where({ id }).first();
+
+    if(!property) {
+      throw new AppError("Imóvel não encontrado.");
+    }
+
+    const photos = await knex("photos").where({ property: id });
+
+    response.json({ property, photos });
+  }
+
+  async index(request, response) {
+    const { type } = request.query;
+
+    const properties = await knex("property").where({ type });
+
+    response.json(properties);
+  }
+
+  async delete(request, response) {
+    const { id } = request.params;
+
+    const property = await knex("property").where({ id }).first();
+
+    if(!property) {
+      throw new AppError("Imóvel não encontrado.");
+    }
+
+    await knex("property").where({ id }).del();
+
+    response.json({ message: "Imóvel deletado com sucesso." });
+  }
+
 
 }
 

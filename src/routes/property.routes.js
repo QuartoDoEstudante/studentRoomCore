@@ -13,6 +13,9 @@ const propertyController = new PropertyController();
 
 
 propertyRoutes.post("/create", ensureAuthenticated, upload.array('files'), propertyController.create);
+propertyRoutes.get("/show/:id", ensureAuthenticated, propertyController.show);
+propertyRoutes.get("/index", ensureAuthenticated, propertyController.index);
+propertyRoutes.delete("/delete/:id", ensureAuthenticated, propertyController.delete);
 
 
 module.exports = propertyRoutes;
