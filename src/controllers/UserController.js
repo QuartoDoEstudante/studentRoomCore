@@ -32,7 +32,7 @@ class UserController {
       cpf,
     });
 
-    response.json({ first_name, last_name, email, contact, cpf });
+    response.json();
   }
 
   async update(request, response) {
