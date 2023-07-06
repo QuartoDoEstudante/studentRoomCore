@@ -131,6 +131,9 @@ class PropertyController {
     if(!property) {
       throw new AppError("Imóvel não encontrado.");
     }
+    await knex("photos").where({ property: id }).del();
+
+    await knex("assessments").where({ property: id }).del();
 
     await knex("property").where({ id }).del();
 
