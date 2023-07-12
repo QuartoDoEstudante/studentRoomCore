@@ -118,7 +118,8 @@ class PropertyController {
   async index(request, response) {
     const { type, value } = request.query;
 
-    const properties = await knex("property").where({ type }).whereLike("value", `%${value}%`);
+    const properties = type? await knex("property").where({ type }).whereLike("value", `%${value}%`) : await knex("property").whereLike("value", `%${value}%`);
+    
 
     response.json(properties);
   }
